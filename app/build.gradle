@@ -22,4 +22,16 @@ buildTypes {
 dependencies {
     compile 'com.google.android.gms:play-services:5.0.89'
     compile 'com.android.support:appcompat-v7:20.+'
+    compile 'org.apache.commons:commons-lang3:3.0'
+    compile 'com.mcxiaoke.volley:library:1.0.6'
+    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
