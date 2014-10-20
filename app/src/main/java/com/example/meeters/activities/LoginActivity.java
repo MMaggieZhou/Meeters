@@ -41,6 +41,7 @@ import com.example.meeters.meeters.RegisterActivity;
 public class LoginActivity extends BaseActivity
 {
     private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final String TAG1 = LoginActivity.class.getSimpleName() + " lifecycle";
 
     private EditText etAccount;
     private EditText etPwd;
@@ -59,6 +60,7 @@ public class LoginActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        Log.i(TAG1,"onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mBaseApplication = (BaseApplication) getApplication();
@@ -242,6 +244,7 @@ public class LoginActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
+        Log.i(TAG1,"onCreateOptionMenu");
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.login, menu);
         return true;
@@ -250,6 +253,7 @@ public class LoginActivity extends BaseActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -277,11 +281,21 @@ public class LoginActivity extends BaseActivity
     // }
 
     @Override
+    protected void onStart() {
+        Log.i(TAG1,"onStart");
+        super.onStart();
+    }
+    @Override
     protected void onResume()
     {
+        Log.i(TAG1,"onResume");
         super.onResume();
     }
-
+    @Override
+    protected void onPause(){
+        Log.i(TAG1,"onPause");
+        super.onPause();
+    }
     @Override
     protected void onStop()
     {
