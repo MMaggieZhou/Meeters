@@ -143,10 +143,10 @@ public class LoginActivity extends BaseActivity
         if (location == null)
         {
             Toast.makeText(getApplicationContext(),
-                    "Turn on your GPS, right now I set your location as seattle for testing! ", Toast.LENGTH_LONG)
+                    "Turn on your GPS, right now I set your location as columbus for testing! ", Toast.LENGTH_LONG)
                     .show();
-            loginRequest.setLatitude(47.6076);
-            loginRequest.setLongitude(-122.333);
+            loginRequest.setLatitude(39.9833);
+            loginRequest.setLongitude( -82.9988889);
         }
         else
         {
