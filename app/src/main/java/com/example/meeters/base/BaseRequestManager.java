@@ -18,8 +18,7 @@ import com.android.volley.toolbox.Volley;
 
 /**
  * Singleton asynctask restful api clinet
- *
- * @author HPZ400_Aaron
+
  *
  * @reference:
  * @http://www.androidhive.info/2014/05/android-working-with- volley -library-1/
