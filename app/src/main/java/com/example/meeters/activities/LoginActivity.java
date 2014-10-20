@@ -35,6 +35,7 @@ import com.example.meeters.model.user.LoginRequest;
 import com.example.meeters.model.user.LoginResponse;
 import com.example.meeters.utils.InputValidationUtils;
 import com.example.meeters.utils.JSONUtils;
+import com.example.meeters.meeters.RegisterActivity;
 
 @SuppressLint("NewApi")
 public class LoginActivity extends BaseActivity
@@ -99,7 +100,7 @@ public class LoginActivity extends BaseActivity
                 break;
 
             case R.id.login_btn_register:
-                //startActivity(RegisterActivity.class);
+                startActivity(RegisterActivity.class);
                 break;
 
             case R.id.login_btn_login:
