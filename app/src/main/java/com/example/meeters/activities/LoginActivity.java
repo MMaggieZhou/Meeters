@@ -3,10 +3,7 @@ package com.example.meeters.activities;
 
 import java.io.UnsupportedEncodingException;
 
-import org.apache.commons.lang3.StringUtils;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
@@ -30,12 +27,10 @@ import com.example.meeters.base.BaseApplication;
 import com.example.meeters.base.BaseRestRequest;
 import com.example.meeters.constant.URL;
 import com.example.meeters.meeters.R;
-import com.example.meeters.model.domain.User;
 import com.example.meeters.model.user.LoginRequest;
 import com.example.meeters.model.user.LoginResponse;
 import com.example.meeters.utils.InputValidationUtils;
 import com.example.meeters.utils.JSONUtils;
-import com.example.meeters.meeters.RegisterActivity;
 
 @SuppressLint("NewApi")
 public class LoginActivity extends BaseActivity

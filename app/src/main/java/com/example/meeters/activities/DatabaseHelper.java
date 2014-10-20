@@ -1,4 +1,4 @@
-package com.example.meeters.meeters;
+package com.example.meeters.activities;
 
 /**
  * Created by fox on 10/18/2014.

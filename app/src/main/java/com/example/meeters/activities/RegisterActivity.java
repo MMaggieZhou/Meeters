@@ -1,4 +1,4 @@
-package com.example.meeters.meeters;
+package com.example.meeters.activities;
 
 /**
  * Created by fox on 10/18/2014.
@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.meeters.meeters.R;
+
 public class RegisterActivity extends Activity implements OnClickListener {
     private EditText etUsername;
     private EditText etEmail;
