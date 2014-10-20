@@ -49,6 +49,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
     private void CreateAccount() {
         // this.output = (TextView) this.findViewById(R.id.out_text);
+        Log.i("Register","onCreate");
         String username = etUsername.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
