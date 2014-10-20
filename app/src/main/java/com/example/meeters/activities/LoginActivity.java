@@ -165,6 +165,8 @@ public class LoginActivity extends BaseActivity
             @Override
             public void onResponse(LoginResponse loginResponse)
             {
+                Toast.makeText(getApplicationContext(), "login successful!",
+                        Toast.LENGTH_LONG).show();
                 mCurrentUser.setEmail(loginResponse.getEmail());
                 mCurrentUser.setGender(loginResponse.getGender());
                 mCurrentUser.setPhone(loginResponse.getPhone());
@@ -174,14 +176,15 @@ public class LoginActivity extends BaseActivity
                 mCurrentUser.setFirstname(loginResponse.getNickname());
                 mCurrentUser.setAuthToken(loginResponse.getAuthToken());
                 mBaseApplication.setAuthToken(loginResponse.getAuthToken());
-                Log.i(TAG, "After login http request, override user info to application! And Navigate to main pages!");
+                //Log.i(TAG, "After login http request, override user info to application! And Navigate to main pages!");
                 dismissLoading();
-
+                Toast.makeText(getApplicationContext(), "welcome " + mCurrentUser.getNickname(),
+                        Toast.LENGTH_LONG).show();
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("currentUser", JSONUtils.toJson(mCurrentUser));
 
-                finish();
+                //finish();
 
             }
         };
