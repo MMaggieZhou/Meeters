@@ -41,8 +41,8 @@ public class RegisterActivity extends Activity implements OnClickListener {
         btnAdd.setOnClickListener(this);
         View btnViewAll = (Button) findViewById(R.id.ViewAll_button);
         btnViewAll.setOnClickListener(this);
-        View btnCancel = (Button) findViewById(R.id.cancel_button);
-        btnCancel.setOnClickListener(this);
+        //View btnCancel = (Button) findViewById(R.id.cancel_button);
+        //btnCancel.setOnClickListener(this);
         viewAll = (TextView) findViewById(R.id.viewAll);
 
     }
@@ -87,9 +87,9 @@ public class RegisterActivity extends Activity implements OnClickListener {
                 Log.v("insert","Done");
                 //finish();
                 break;
-            case R.id.cancel_button:
-                //finish();
-                break;
+            //case R.id.cancel_button:
+
+                //break;
             case R.id.ViewAll_button:
                 Cursor cur = dh.loadAll();
                 StringBuffer sf = new StringBuffer();

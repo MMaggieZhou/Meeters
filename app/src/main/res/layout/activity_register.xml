@@ -95,12 +95,12 @@
             android:layout_marginTop="20dip"
             android:text="Register" />
 
-        <Button
+       <!-- Button
             android:id="@+id/cancel_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:text="Cancel" />
+            android:text="Cancel" /-->
 
         <Button
             android:id="@+id/ViewAll_button"
