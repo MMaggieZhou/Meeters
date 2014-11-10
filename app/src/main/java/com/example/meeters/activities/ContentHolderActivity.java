@@ -150,12 +150,12 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_top, menu);
+        getMenuInflater().inflate(R.menu.menu_top, menu);
         return true;
     }
 
     // Main overflow menu options
-    /*
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -163,22 +163,21 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
 
         switch (itemId)
         {
+            /*
             case R.id.topmenu_action_map:
                 navigateToMap();
                 break;
+            */
             case R.id.topmenu_action_profile:
                 updateProfile();
                 break;
             case R.id.topmenu_action_logout:
                 logout();
                 break;
-            case R.id.topmenu_action_settings:
-                // TODO Implement settings activity
-                settings();
-                break;
             case R.id.topmenu_action_help:
                 help();
                 break;
+
             case R.id.topmenu_action_search:
                 searchNearby();
                 // TODO Implement search activity (or other menu options here)
@@ -190,7 +189,7 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
         }
         return super.onOptionsItemSelected(item);
     }
-    */
+
     /* Debug needed */
     private void navigateToMap()
     {
@@ -232,18 +231,6 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
         builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
 
-    }
-
-    private void settings()
-    {
-        // android.support.v4.app.FragmentManager manager =
-        // getSupportFragmentManager();
-        // SettingsFragment mydialog = new SettingsFragment();
-        // mydialog.show(manager, "");
-        // mydialog.show()
-
-        //Intent intent = new Intent(this, SettingsActivity.class);
-        // startActivity(intent);
     }
 
     private void help()

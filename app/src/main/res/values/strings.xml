@@ -21,4 +21,17 @@
 
     <string name="title_section1">My Activities</string>
     <string name="title_section2">Nearby Activities</string>
+
+    <string name="menu_logout_label">Logout</string>
+    <string name="menu_search_label">Search nearby</string>
+    <string name="menu_profile_label">My Profile</string>
+    <string name="menu_help_label">Help</string>
+    <string name="menu_new_party_label">+</string>
+
+    <!-- Search fragment -->
+    <string name="search_nearby_search_btn_label">Search</string>
+    <string name="search_nearby_cancel_btn_label">Cancel</string>
+    <string name="search_nearby_screen_title">Filter your result by</string>
+    <string name="search_nearby_fragment_title">Search nearby activities</string>
+
 </resources>

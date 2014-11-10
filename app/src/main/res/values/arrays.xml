@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menu_item">
+        <item >Welcome</item>
+        <item >Map</item>
+    </string-array>
+    <string-array name="search_nearby_spinner_distance">
+        <item >Within 1 mile</item>
+        <item >Within 5 miles</item>
+        <item >Within 10 miles</item>
+        <item >Larger than 10 miles</item>
+    </string-array>
+    <string-array name="search_nearby_spinner_numOfPeople">
+        <item >1-2</item>
+        <item >3-5</item>
+        <item >6-10</item>
+        <item >Greater than 10</item>
+    </string-array>
+    <string-array name="search_nearby_spinner_price">
+        <item >0-10$</item>
+        <item >11-50$</item>
+        <item >51-100$</item>
+        <item >Greater than 100$</item>
+    </string-array>
+    <string-array name="search_nearby_spinner_time">
+        <item >Within 3 hours</item>
+        <item >Within 12 hours</item>
+        <item >Within 24 hours</item>
+        <item >Within a week</item>
+        <item >More than a week</item>
+    </string-array>
+
+    <string-array name="entries_list_preference">
+        <item>Alpha Option 01</item>
+        <item>Beta Option 02</item>
+        <item>Charlie Option 03</item>
+    </string-array>
+
+    <string-array name="entryvalues_list_preference">
+        <item>Alpha</item>
+        <item>Beta</item>
+        <item>Charlie</item>
+    </string-array>
+    <string-array name="search_nearby_options">
+        <item >Distance</item>
+        <item >Group size</item>
+        <item >Price</item>
+        <item >Time</item>
+    </string-array>
+    <string-array name="myProfile_options">
+        <item >Nickname</item>
+        <item >Email</item>
+        <item >Gender</item>
+        <item >Phone Number</item>
+        <item >First Name</item>
+        <item >Last Name</item>
+        <item >Reset Password</item>
+    </string-array>
+</resources>
