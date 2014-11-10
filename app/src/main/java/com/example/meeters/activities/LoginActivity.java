@@ -4,6 +4,7 @@ package com.example.meeters.activities;
 import java.io.UnsupportedEncodingException;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
@@ -31,7 +32,8 @@ import com.example.meeters.model.user.LoginRequest;
 import com.example.meeters.model.user.LoginResponse;
 import com.example.meeters.utils.InputValidationUtils;
 import com.example.meeters.utils.JSONUtils;
-
+import org.apache.commons.lang3.StringUtils;
+import com.example.meeters.model.domain.*;
 @SuppressLint("NewApi")
 public class LoginActivity extends BaseActivity
 {
@@ -44,14 +46,6 @@ public class LoginActivity extends BaseActivity
     private Button btnLogin;
     private Button btnFindPassword;
 
-    // private HandyTextView htvForgotPassword;
-
-    // static {
-    // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-    // .permitAll().build();
-    // StrictMode.setThreadPolicy(policy);
-    // }
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -60,20 +54,44 @@ public class LoginActivity extends BaseActivity
         setContentView(R.layout.activity_login);
         mBaseApplication = (BaseApplication) getApplication();
         mCurrentUser = mBaseApplication.getUser();
+        checkLoginStatus();
         initViews();
         initEvents();
 
     }
+    protected void checkLoginStatus()
+    {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+        String userStr = settings.getString("currentUser", "");
+
+        if (StringUtils.isBlank(userStr))
+        {
+            Log.i(TAG, "Can not get user info from sharedpreferences");
+            return;
+        }
+
+        try
+        {
+            mCurrentUser = (User) JSONUtils.toObject(userStr, User.class);
+        }
+        catch (Exception e)
+        {
+            Log.e(TAG, "Can not get user info from sharedpreferences");
+            return;
+        }
+
+        Intent intent = new Intent(LoginActivity.this, ContentHolderActivity.class);
+        startActivity(intent);
+        //startActivity(ContentHolderActivity.class);
+        finish();
+    }
+
     protected void initViews()
     {
 
         etAccount = (EditText) findViewById(R.id.login_et_account);
         etPwd = (EditText) findViewById(R.id.login_et_pwd);
-        // htvForgotPassword = (HandyTextView)
-        // findViewById(R.id.login_htv_forgotpassword);
-        // TextUtils.addUnderlineText(this, htvForgotPassword, 0,
-        // htvForgotPassword.getText().length());
-
         btnRegister = (Button) findViewById(R.id.login_btn_register);
         btnLogin = (Button) findViewById(R.id.login_btn_login);
         btnFindPassword = (Button) findViewById(R.id.login_btn_find_password);
@@ -130,11 +148,6 @@ public class LoginActivity extends BaseActivity
         showLoading("Loading...");
 
         loginRequest.setLoginAccount(etAccount.getText().toString().trim());
-        // TODO encryption the pwd
-        // String base64EncodedCredentials =
-        // Base64.encodeToString(etPwd.getText()
-        // .toString().getBytes(), Base64.NO_WRAP);
-        // loginRequest.setPassword(base64EncodedCredentials);
 
         loginRequest.setPassword(etPwd.getText().toString().trim());
 
@@ -153,7 +166,6 @@ public class LoginActivity extends BaseActivity
             loginRequest.setLatitude(location.getLatitude());
             loginRequest.setLongitude(location.getLongitude());
         }
-
         Response.Listener<LoginResponse> loginListener = new Response.Listener<LoginResponse>()
         {
 
@@ -178,9 +190,11 @@ public class LoginActivity extends BaseActivity
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("currentUser", JSONUtils.toJson(mCurrentUser));
+                editor.commit();
 
-                //finish();
-
+                Intent intent = new Intent(LoginActivity.this, ContentHolderActivity.class);
+                startActivity(intent);
+                finish();
             }
         };
 
@@ -269,14 +283,6 @@ public class LoginActivity extends BaseActivity
         // TODO Auto-generated method stub
 
     }
-
-    //
-    // @Override
-    // public void onBackPressed()
-    // {
-    // moveTaskToBack(true);
-    // super.onBackPressed();
-    // }
 
     @Override
     protected void onStart() {

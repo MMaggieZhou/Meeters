@@ -34,7 +34,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.example.meeters.model.domain.*;
 import com.example.meeters.utils.JSONUtils;
 
-public abstract class BaseActivity extends Activity implements OnClickListener, OnItemClickListener
+public abstract class BaseActivity extends FragmentActivity implements OnClickListener, OnItemClickListener
 {
     private static final String TAG = BaseActivity.class.getSimpleName();
 
@@ -63,13 +63,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener, 
         locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         initProvider();
         initLocationListener();
-        //locationTracker();
-
-        // baseApplication = (BaseApplication) getApplication();
-        // currentUser = baseApplication.getUser();
-
-        // initViews();
-        // initEvents();
+        locationTracker();
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = settings.edit();
@@ -95,14 +89,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener, 
 
     protected void showCustomToast(String text)
     {
-        // View toastRoot = LayoutInflater.from(BaseActivity.this).inflate(
-        // R.layout.common_toast, null);
-        // ((HandyTextView)
-        // toastRoot.findViewById(R.id.toast_text)).setText(text);
         Toast toast = new Toast(BaseActivity.this);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
-        // toast.setView(toastRoot);
         toast.show();
     }
 
@@ -243,26 +232,13 @@ public abstract class BaseActivity extends Activity implements OnClickListener, 
         }
     }
 
-    // public void onBackPressed()
-    // {
-    // moveTaskToBack(true);
-    // return;
-    // }
-
-    /**
-     * Registers the application with GCM servers asynchronously.
-     * <p>
-     * Stores the registration ID and the app versionCode in the application's
-     * shared preferences.
-     */
-
-
     /* Init location service provider. */
     private void initProvider()
     {
         bestProvider = null;
         Criteria criteria = new Criteria();
-        bestProvider = locManager.getBestProvider(criteria, true);
+        bestProvider = locManager.getBestProvider(criteria, false);
+        //TODO
         if (bestProvider == null)
         {
             Toast.makeText(BaseActivity.this, "Please turn on your GPS or connect to WIFI", Toast.LENGTH_LONG).show();
@@ -303,8 +279,11 @@ public abstract class BaseActivity extends Activity implements OnClickListener, 
     /* Track user location with specific time interval. */
     private void locationTracker()
     {
-        locManager.requestLocationUpdates(bestProvider, 5 * 1000, 8, mLocListener);
-        myLocation = locManager.getLastKnownLocation(bestProvider);
+        if (bestProvider != null) {
+            locManager.requestLocationUpdates(bestProvider, 5 * 1000, 8, mLocListener);
+            myLocation = locManager.getLastKnownLocation(bestProvider);
+
+
 
         /* mandatory null location check */
         if (myLocation == null)
@@ -332,6 +311,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener, 
                         Toast.LENGTH_LONG).show();
             }
         }
+        }
     }
 
     public Location getLocation()
@@ -351,7 +331,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener, 
         super.onResume();
         initProvider();
         initLocationListener();
-        //locationTracker();
+        locationTracker();
     }
 
 }
