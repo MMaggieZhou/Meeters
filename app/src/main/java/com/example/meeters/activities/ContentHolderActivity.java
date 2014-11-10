@@ -208,14 +208,18 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
                 switch (which)
                 {
                     case DialogInterface.BUTTON_POSITIVE:
-                        Intent intent = new Intent(ContentHolderActivity.this, LoginActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         SharedPreferences settings = PreferenceManager
                                 .getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = settings.edit();
                         editor.remove("currentUser");
+                        editor.commit();
+                        Intent intent = new Intent(ContentHolderActivity.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+
                         // editor.clear();
                         startActivity(intent);
                         finish();
