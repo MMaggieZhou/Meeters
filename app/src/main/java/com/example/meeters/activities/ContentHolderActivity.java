@@ -1,6 +1,6 @@
 package com.example.meeters.activities;
 import java.util.ArrayList;
-
+import com.example.meeters.fragments.NearbyFragment;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.AlertDialog;
@@ -119,9 +119,9 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
 
     protected void initFragments()
     {
-        mFragments = new Fragment[1];
+        mFragments = new Fragment[2];
         mFragments[0] = new MyPartyFragment(mBaseApplication, this, this);
-        //mFragments[1] = new NearByFragment(mBaseApplication, this, this);
+        mFragments[1] = new NearbyFragment(mBaseApplication, this, this);
         //mFragments[1].setTargetFragment(mFragments[0], JOIN_PARTY_REQUEST);
         //mFragments[2] = new WelcomeFragment(mBaseApplication, this, this);
 
