@@ -3,7 +3,6 @@ package com.example.meeters.activities;
 import android.os.Bundle;
 import android.os.AsyncTask;
 import android.app.*;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,25 +13,14 @@ import com.example.meeters.base.BaseActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import java.util.Date;
 import java.util.Properties;
 import java.io.UnsupportedEncodingException;
-import javax.activation.CommandMap;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.activation.MailcapCommandMap;
-import javax.mail.BodyPart;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Message;
-import javax.mail.internet.MimeMultipart;
 import javax.mail.*;
 import javax.mail.internet.AddressException;
 /**
