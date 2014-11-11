@@ -111,7 +111,7 @@ public class LoginActivity extends BaseActivity
         switch (v.getId())
         {
             case R.id.login_btn_find_password:
-                //startActivity(FindPasswordActivity.class);
+                startActivity(FindPasswordActivity.class);
                 break;
 
             case R.id.login_btn_register:
