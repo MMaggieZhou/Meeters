@@ -102,7 +102,7 @@ public class FindPasswordActivity extends BaseActivity {
 
         return Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("yingirisyeon@gmail.com", "happyday");
+                return new PasswordAuthentication("yingirisyeon@gmail.com", "happyday91");
             }
         });
     }
