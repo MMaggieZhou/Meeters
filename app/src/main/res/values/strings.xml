@@ -27,6 +27,7 @@
     <string name="menu_profile_label">My Profile</string>
     <string name="menu_help_label">Help</string>
     <string name="menu_new_party_label">+</string>
+    <string name="menu_help_contact"></string>
 
     <!-- Search fragment -->
     <string name="search_nearby_search_btn_label">Search</string>
