@@ -15,8 +15,8 @@
     </item>
     -->
     <item
-        android:id="@+id/topmenu_action_help"
-        android:title="@string/menu_help_label">
+        android:id="@+id/topmenu_action_contact"
+        android:title="@string/menu_help_contact">
     </item>
     <item
         android:id="@+id/topmenu_action_search"

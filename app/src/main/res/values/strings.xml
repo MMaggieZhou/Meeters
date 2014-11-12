@@ -34,6 +34,4 @@
     <string name="search_nearby_screen_title">Filter your result by</string>
     <string name="search_nearby_fragment_title">Search nearby activities</string>
 
-
-    <string name="datePicker_title">Choose Date</string>
 </resources>
