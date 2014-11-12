@@ -155,7 +155,8 @@
         android:layout_height="wrap_content"
         android:text="Post!"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:id="@+id/postButton"/>
 
 
 
