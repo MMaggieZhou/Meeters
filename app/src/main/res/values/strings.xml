@@ -26,6 +26,7 @@
     <string name="menu_search_label">Search nearby</string>
     <string name="menu_profile_label">My Profile</string>
     <string name="menu_help_label">Help</string>
+    <string name="menu_help_contact">Contact</string>
     <string name="menu_new_party_label">+</string>
 
     <!-- Search fragment -->
@@ -34,4 +35,5 @@
     <string name="search_nearby_screen_title">Filter your result by</string>
     <string name="search_nearby_fragment_title">Search nearby activities</string>
 
+    <string name="date_time_picker_pick_btn_label">Pick it!</string>
 </resources>

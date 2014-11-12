@@ -24,9 +24,11 @@ import android.widget.AdapterView;
 import com.example.meeters.base.BaseActivity;
 import com.example.meeters.base.BaseApplication;
 import com.example.meeters.meeters.R;
+import com.example.meeters.activities.Profile.*;
 //import com.theMobies.golunch.activity.myProfiles.MyProfilesActivity;
 //import com.theMobies.golunch.constant.OnSearchReturnListener;
 import com.example.meeters.fragments.MyPartyFragment;
+import com.example.meeters.fragments.*;
 //import com.theMobies.golunch.fragment.NearByFragment;
 //import com.theMobies.golunch.fragment.SearchNearbyFragment;
 //import com.theMobies.golunch.fragment.WelcomeFragment;
@@ -35,7 +37,7 @@ import com.example.meeters.base.*;
 public class ContentHolderActivity extends BaseActivity implements ActionBar.TabListener
 {
     private static final String TAG = ContentHolderActivity.class.getSimpleName();
-
+    private static final int START_PARTY_REQUEST = 4;
     // private BaseApplication mApplication;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -174,7 +176,7 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
             case R.id.topmenu_action_logout:
                 logout();
                 break;
-            case R.id.topmenu_action_help:
+            case R.id.topmenu_action_contact:
                 help();
                 break;
 
@@ -239,8 +241,8 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
 
     private void help()
     {
-        //Intent intent = new Intent(this, HelpActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -279,21 +281,21 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
 
     private void updateProfile()
     {
-        //Intent intent = new Intent(this, MyProfilesActivity.class);
+        //Intent intent = new Intent(this, ProfileActivity.class);
         //startActivity(intent);
     }
 
     private void searchNearby()
     {
-        //android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        // SearchNearbyFragment mydialog = new SearchNearbyFragment(mBaseApplication, this, this);
-        //mydialog.show(manager, "");
+        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+         SearchNearbyFragment mydialog = new SearchNearbyFragment(mBaseApplication, this, this);
+        mydialog.show(manager, "");
     }
 
     private void startNewParty()
     {
-        //Intent intent = new Intent(this, StartPartyActivity.class);
-        //startActivityForResult(intent,START_PARTY_REQUEST);
+        Intent intent = new Intent(this, StartPartyActivity.class);
+        startActivityForResult(intent,START_PARTY_REQUEST);
     }
 
     /*

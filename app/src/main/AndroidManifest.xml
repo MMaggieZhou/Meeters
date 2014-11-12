@@ -59,6 +59,23 @@
             android:screenOrientation="portrait" >
         </activity>
 
+        <activity
+            android:name="com.example.meeters.activities.HelpActivity"
+            android:label="@string/app_name"
+            android:launchMode="standard"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.meeters.activities.StartPartyActivity"
+            android:label="@string/app_name"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.example.meeters.activities.DateTimePickerActivity"
+            android:label="@string/app_name"
+            android:launchMode="standard"
+            android:screenOrientation="portrait" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
