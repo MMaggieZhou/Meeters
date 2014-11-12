@@ -281,8 +281,8 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
 
     private void updateProfile()
     {
-        //Intent intent = new Intent(this, ProfileActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     private void searchNearby()
