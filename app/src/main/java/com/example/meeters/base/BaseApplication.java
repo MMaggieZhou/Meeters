@@ -1,5 +1,4 @@
 package com.example.meeters.base;
-import com.example.meeters.database.DBHander;
 import com.example.meeters.model.domain.*;
 
 import android.app.Application;
@@ -15,7 +14,6 @@ public class BaseApplication extends Application
     private static final String TAG = BaseApplication.class.getSimpleName();
 
     private User user;
-    private DBHander dbHander;
     private LocationManager locManager;
     public Location myLocation;
     private String bestProvider;
@@ -70,12 +68,5 @@ public class BaseApplication extends Application
     {
         this.user = user;
     }
-
-    public DBHander getDbHander()
-    {
-        return dbHander;
-    }
-
-    public void setDbHander(DBHander dbhander){this.dbHander=dbhander;}
 
 }

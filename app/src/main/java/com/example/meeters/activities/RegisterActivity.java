@@ -5,15 +5,9 @@ package com.example.meeters.activities;
  */
 import java.io.UnsupportedEncodingException;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.location.Location;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -31,11 +25,8 @@ import com.example.meeters.base.BaseActivity;
 import com.example.meeters.base.BaseApplication;
 import com.example.meeters.base.BaseRestRequest;
 import com.example.meeters.constant.URL;
-import com.example.meeters.database.DBHander;
 import com.example.meeters.meeters.R;
 import com.example.meeters.model.domain.User;
-import com.example.meeters.model.user.LoginRequest;
-import com.example.meeters.model.user.LoginResponse;
 import com.example.meeters.model.user.RegisterRequest;
 import com.example.meeters.model.user.RegisterResponse;
 import com.example.meeters.utils.InputValidationUtils;
@@ -129,22 +120,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener, O
         registerRequest.setEmail(etEmail.getText().toString().trim());
         registerRequest.setPassword(etPassword.getText().toString().trim());
 
-       /* Location location = getLocation();
-
-        if (location == null)
-        {
-            Toast.makeText(getApplicationContext(),
-                    "Turn on your GPS, right now I set your location as columbus for testing! ", Toast.LENGTH_LONG)
-                    .show();
-            registerRequest.setLatitude(39.9833);
-            registerRequest.setLongitude( -82.9988889);
-        }
-        else
-        {
-            registerRequest.setLatitude(location.getLatitude());
-            registerRequest.setLongitude(location.getLongitude());
-        }*/
-
         Response.Listener<RegisterResponse> registerLisenter = new Response.Listener<RegisterResponse>()
         {
 
@@ -156,7 +131,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener, O
                 User user = new User();
                 user.setEmail(registerResponse.getEmail());
                 user.setNickname(registerResponse.getNickname());
-                //user.setPassword(registerResponse.getPassword());
                 user.setAuthToken(registerResponse.getAuthToken());
                 mBaseApplication.setUser(user);
                 mBaseApplication.setAuthToken(registerResponse.getAuthToken());
@@ -164,9 +138,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener, O
                 //After register http request, set user info to application! And Navigate to main pages!
                 dismissLoading();
 
-                DBHander dbHander = mBaseApplication.getDbHander();
-                dbHander.addUser(mBaseApplication.getUser());
-                Intent intent = new Intent(RegisterActivity.this, ContentHolderActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
