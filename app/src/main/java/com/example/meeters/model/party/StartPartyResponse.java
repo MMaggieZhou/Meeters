@@ -6,6 +6,8 @@ package com.example.meeters.model.party;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
+import com.example.meeters.model.common.Address;
 
 /**
  * Aaron
@@ -16,8 +18,10 @@ public class StartPartyResponse extends StartPartyRequest implements Serializabl
     private BigDecimal distance;
     private Double longitude;
     private Double latitude;
-    private String theme;
-    private String venues;
+    private String topic;
+    private Address address;
+    private Date date;
+    private String description;
 
     public BigInteger getPartyId()
     {
@@ -59,24 +63,40 @@ public class StartPartyResponse extends StartPartyRequest implements Serializabl
         this.latitude = latitude;
     }
     
-    public String getTheme()
+    public String getTopic()
     {
-        return theme;
+        return topic;
     }
 
-    public void setTheme(String theme)
+    public void setTopic(String topic)
     {
-        this.theme = theme;
+        this.topic = topic;
     }
 
-    public String getVenues()
+    public Address getAddress()
     {
-        return venues;
+        return address;
     }
 
-    public void setVenues(String venues)
+    public void setAddress(Address address)
     {
-        this.venues = venues;
+        this.address = address;
+    }
+
+    public Date getDate(){
+        return date;
+    }
+
+    public void setDate(Date date){
+        this.date=date;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public void setDescription(String description){
+
     }
 
 }

@@ -50,7 +50,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 
 public class NicknameFragment  extends BaseFragment implements OnClickListener{
-    private int mUserId;
+    private BigInteger mUserId;
     private String mNickname;
     private String newNickname;
     private Button mUpdateBtn;
@@ -66,16 +66,6 @@ public class NicknameFragment  extends BaseFragment implements OnClickListener{
         this.mBaseActivity = activity;
         this.mBaseApplication = application;
     }
-   /* public static NicknameFragment newInstance(BigInteger id, String nickname)
-    {
-        NicknameFragment f=new NicknameFragment();
-        Bundle args = new Bundle();
-        args.putInt("UserId", id.intValue());
-        args.putString("Nickname", nickname);
-        f.setArguments(args);
-        return f;
-
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -88,7 +78,7 @@ public class NicknameFragment  extends BaseFragment implements OnClickListener{
 
         //mUserId=getArguments().getInt("UserId", 0);
         //mNickname=getArguments().getString("Nickname", "");
-        mUserId=mBaseApplication.getUser().getUserId().intValue();
+        mUserId=mBaseApplication.getUser().getUserId();
         mNickname=mBaseApplication.getUser().getNickname();
         mUpdateBtn = (Button) view.findViewById(R.id.profile_nickname_update_btn);
         mCancelBtn = (Button) view.findViewById(R.id.profile_nickname_cancel_btn);
