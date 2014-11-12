@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <EditText
-        android:id="@+id/profile_update_email"
+        android:id="@+id/profile_update_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,20 +16,20 @@
     </EditText>
 
     <Button
-        android:id="@+id/profile_email_cancel_btn"
+        android:id="@+id/profile_nickname_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/profile_update_email"
-        android:layout_below="@+id/profile_update_email"
+        android:layout_alignLeft="@+id/profile_update_nickname"
+        android:layout_below="@+id/profile_update_nickname"
         android:layout_marginTop="50dp"
         android:text="Cancel" />
 
     <Button
-        android:id="@+id/profile_email_update_btn"
+        android:id="@+id/profile_nickname_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/profile_email_cancel_btn"
-        android:layout_alignRight="@+id/profile_update_email"
+        android:layout_alignBottom="@+id/profile_nickname_cancel_btn"
+        android:layout_alignRight="@+id/profile_update_nickname"
         android:text="Submit" />
 
 </RelativeLayout>
