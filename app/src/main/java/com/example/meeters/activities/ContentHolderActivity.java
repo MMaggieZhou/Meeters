@@ -41,7 +41,7 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
 {
     private static final String TAG = ContentHolderActivity.class.getSimpleName();
     private static final int START_PARTY_REQUEST = 4;
-    // private BaseApplication mApplication;
+    private BaseApplication mApplication;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private ActionBar mActionBar;
@@ -58,7 +58,7 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.app_title);
+        setTitle(R.string.app_name);
         setContentView(R.layout.content_frame);
         mBaseApplication = (BaseApplication) getApplication();
         mCurrentUser = mBaseApplication.getUser();

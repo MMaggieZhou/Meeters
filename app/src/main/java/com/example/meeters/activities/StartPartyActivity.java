@@ -326,9 +326,9 @@ public class StartPartyActivity extends BaseActivity
 
             //party.setPrice(new BigDecimal(mEtPrice.getText().toString().trim()));
 
-            party.setNumOfPeople(Integer.parseInt(mEtNumOfPeople.getText().toString().trim()));
+            //party.setNumOfPeople(Integer.parseInt(mEtNumOfPeople.getText().toString().trim()));
 
-            party.setVenues((String) mEtVenues.getText().toString().trim());
+            //party.setVenues((String) mEtVenues.getText().toString().trim());
 
             MutableDateTime endTime = new MutableDateTime(mEndDateTime);
             endTime.setZone(DateTimeZone.UTC);
@@ -360,8 +360,9 @@ public class StartPartyActivity extends BaseActivity
                 // return null;
             }
             */
-            /*
+
             party.setTheme(mEtTheme.getText().toString());
+            /*
             if (StringUtils.isBlank(party.getTheme()))
             {
                 mEtTheme.requestFocus();
@@ -395,7 +396,7 @@ public class StartPartyActivity extends BaseActivity
             if (errorMessage.length() > 0)
             {
                 Toast.makeText(getApplicationContext(), errorMessage.toString(), Toast.LENGTH_SHORT).show();
-                return null;
+                //return null;
             }
 
         }

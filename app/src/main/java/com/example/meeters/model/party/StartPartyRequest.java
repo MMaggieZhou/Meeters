@@ -15,7 +15,6 @@ import com.example.meeters.model.common.*;
 public class StartPartyRequest implements Serializable
 {
     private BigInteger userId;
-    private BigInteger partyId;
     private String theme;
     private String venues;
     private int numOfPeople;
@@ -27,13 +26,6 @@ public class StartPartyRequest implements Serializable
     private Double longitude;
     private Double latitude;
 
-    public BigInteger getPartyId(){
-        return partyId;
-    }
-
-    public void setPartyId(BigInteger partyId){
-        this.partyId=partyId;
-    }
     public BigInteger getUserId()
     {
         return userId;

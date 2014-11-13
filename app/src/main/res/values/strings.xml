@@ -16,8 +16,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_content_holder">ContentHolder</string>
     <string name="hello_world">Hello world!</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="app_title">GoLunch</string>
+    <string name="hello_blank_fragment">Loading Map</string>
+
 
     <string name="title_section1">My Activities</string>
     <string name="title_section2">Nearby Activities</string>

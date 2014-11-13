@@ -38,38 +38,6 @@ public class PartyListAdapter extends BaseAdapter
         this.mMyParties = partyList;
         this.mContext = context;
         Resources res = mContext.getResources();
-        Drawable drawable0 = res.getDrawable(R.drawable.icon_food_0);
-        Drawable drawable1 = res.getDrawable(R.drawable.icon_food_1);
-        Drawable drawable2 = res.getDrawable(R.drawable.icon_food_2);
-        Drawable drawable3 = res.getDrawable(R.drawable.icon_food_3);
-        Drawable drawable4 = res.getDrawable(R.drawable.icon_food_4);
-        Drawable drawable5 = res.getDrawable(R.drawable.icon_food_5);
-        Drawable drawable6 = res.getDrawable(R.drawable.icon_food_6);
-        Drawable drawable7 = res.getDrawable(R.drawable.icon_food_7);
-        Drawable drawable8 = res.getDrawable(R.drawable.icon_food_8);
-        Drawable drawable9 = res.getDrawable(R.drawable.icon_food_9);
-        Drawable drawable10 = res.getDrawable(R.drawable.icon_food_10);
-        Drawable drawable11 = res.getDrawable(R.drawable.icon_food_11);
-        Drawable drawable12 = res.getDrawable(R.drawable.icon_food_12);
-        Drawable drawable13 = res.getDrawable(R.drawable.icon_food_13);
-        Drawable drawable14 = res.getDrawable(R.drawable.icon_food_14);
-        Drawable drawable15 = res.getDrawable(R.drawable.icon_food_15);
-        drawables.add(drawable0);
-        drawables.add(drawable1);
-        drawables.add(drawable2);
-        drawables.add(drawable3);
-        drawables.add(drawable4);
-        drawables.add(drawable5);
-        drawables.add(drawable6);
-        drawables.add(drawable7);
-        drawables.add(drawable8);
-        drawables.add(drawable9);
-        drawables.add(drawable10);
-        drawables.add(drawable11);
-        drawables.add(drawable12);
-        drawables.add(drawable13);
-        drawables.add(drawable14);
-        drawables.add(drawable15);
 
     }
 
@@ -100,7 +68,8 @@ public class PartyListAdapter extends BaseAdapter
         }
         TextView distance = (TextView) convertView.findViewById(R.id.list_item_party_distance_data);
         TextView time = (TextView) convertView.findViewById(R.id.list_item_party_time_data);
-        TextView theme = (TextView) convertView.findViewById(R.id.list_item_party_theme_data);
+        TextView theme = (TextView) convertView.findViewById(R.id.eventTheme);
+        TextView description = (TextView) convertView.findViewById(R.id.eventDescription);
 
         // ImageView img = (ImageView) convertView.findViewById(R.id.list_item_party_image);
         // img.setImageDrawable(drawables.get(mMyParties.get(position).getPartyId().mod(new BigInteger("15")).intValue()));
@@ -140,6 +109,8 @@ public class PartyListAdapter extends BaseAdapter
 
         time.setText(timeString);
         theme.setText(mMyParties.get(position).getTheme());
+        String str = (mMyParties.get(position).getOtherInfo()== null ? " " : mMyParties.get(position).getOtherInfo());
+        description.setText(str);
         return convertView;
     }
 

@@ -1,6 +1,7 @@
 package com.example.meeters.fragments;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
@@ -9,6 +10,8 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.MutableDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
+import com.example.meeters.model.domain.User;
 import com.example.meeters.model.party.*;
 import android.annotation.SuppressLint;
 import com.android.volley.Request.Method;
@@ -51,6 +54,7 @@ public class MyPartyFragment extends BaseFragment
     public MyPartyFragment(BaseApplication application, BaseActivity activity, Context context)
     {
         super(application, activity, context);
+        this.mApplication = application;
         this.mBaseActivity = activity;
         this.mFragment = this;
     }
@@ -166,24 +170,30 @@ public class MyPartyFragment extends BaseFragment
                 Toast.makeText(mActivity.getApplicationContext(),
                         "Turn on your GPS, right now I set your location as seattle for testing! ", Toast.LENGTH_LONG)
                         .show();
-                //param.put(LAT, "47.6076");
-                //param.put(LONG, "-122.333");
+                param.put("lat", "47.6076");
+                param.put("long", "-122.333");
             }
             else
             {
-                //param.put(LAT, String.valueOf(location.getLatitude()));
-                //param.put(LONG, String.valueOf(location.getLongitude()));
+                param.put("lat", String.valueOf(location.getLatitude()));
+                param.put("long", String.valueOf(location.getLongitude()));
             }
 
         }
         catch (Exception e)
         {
             Log.e(TAG, "Can not load location to get my parties");
-            // param.put(LONG, "-122.357082");
-            // param.put(LAT, "47.627577");
+            param.put("lat", "-122.357082");
+             param.put("long", "47.627577");
         }
 
-        //param.put(USER_ID, mApplication.getUser().getUserId().toString());
+        String str = (mApplication == null? "not null" : "null");
+        User user = mApplication.getUser();
+        String s = null;
+        if (user.getUserId() == null) {
+            user.setUserId(new BigInteger("4"));
+        }
+        param.put("userId", mApplication.getUser().getUserId().toString());
 
         BaseRestRequest<GetMyPartyResponse> loginRest = new BaseRestRequest<GetMyPartyResponse>(Method.GET,
                 URL.GET_PARTY, param, null, getMyPartiesListener, serviceErrorListener(mActivity))
@@ -235,7 +245,7 @@ public class MyPartyFragment extends BaseFragment
 
         Log.i(TAG, "Add find my joined parties http request in the async queue!");
 
-        //mActivity.executeRequest(loginRest);
+        mActivity.executeRequest(loginRest);
 
     }
     /*

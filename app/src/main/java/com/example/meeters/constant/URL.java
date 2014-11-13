@@ -10,7 +10,7 @@ public enum URL
     LOGIN("/user/login"),
     REGISTER("/user/register"),
     PROFILE_UPDATE("/user/profileUpdate"),
-    START_PARTY("/party/start"),
+    START_PARTY("/party/create"),
     GET_PARTY("/party/myParty"),
     JOIN_PARTY("/party/join"),
     FIND_PASSWORD("/user/findPassword"),
