@@ -34,6 +34,9 @@ import com.example.meeters.fragments.*;
 //import com.theMobies.golunch.fragment.WelcomeFragment;
 //import com.theMobies.golunch.model.party.StartPartyResponse;
 import com.example.meeters.base.*;
+import com.example.meeters.model.party.SearchPartyResponse;
+import com.example.meeters.model.party.StartPartyResponse;
+
 public class ContentHolderActivity extends BaseActivity implements ActionBar.TabListener
 {
     private static final String TAG = ContentHolderActivity.class.getSimpleName();
@@ -324,4 +327,14 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
         return super.onKeyDown(keyCode, event);
     }
 
+    public void onSearchReturn(ArrayList<SearchPartyResponse> partyList)
+    {
+        ((NearbyFragment) mFragments[1]).setPartyList(partyList);
+        //((NearByFragment) mFragments[1]).mAdapter.notifyDataSetChanged();
+        mViewPager.setCurrentItem(1);
+    }
+    public interface OnSearchReturnListener
+    {
+        public void onSearchReturn(ArrayList<SearchPartyResponse> partyList);
+    }
 }

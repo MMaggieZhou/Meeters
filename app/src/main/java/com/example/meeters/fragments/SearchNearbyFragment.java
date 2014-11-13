@@ -28,15 +28,17 @@ import com.android.volley.ParseError;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.example.meeters.activities.ContentHolderActivity;
 import com.example.meeters.meeters.R;
-//import com.theMobies.golunch.constant.OnSearchReturnListener;
+
 import com.example.meeters.constant.URL;
 import com.example.meeters.model.domain.User;
 //import com.theMobies.golunch.model.party.GetMyPartyResponse;
 //import com.theMobies.golunch.model.party.NearbySearchRequest;
 //import com.theMobies.golunch.model.party.StartPartyResponse;
-//import com.theMobies.golunch.util.JSONUtils;
+import com.example.meeters.utils.JSONUtils;
 import com.example.meeters.base.*;
+import com.example.meeters.model.party.*;
 @SuppressLint("ValidFragment")
 public class SearchNearbyFragment extends DialogFragment implements OnClickListener
 {
@@ -52,8 +54,7 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
     private Location mLocation;
     private BaseApplication mBaseApplication;
     private User mCurrentUser;
-    //protected ArrayList<StartPartyResponse> mPartyList;
-    //protected OnSearchReturnListener onSearchReturn;
+    protected ArrayList<SearchPartyResponse> mPartyList;
     private BaseActivity mBaseActivity;
     private Context mContext;
 
@@ -72,16 +73,7 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
     {
 
         super.onAttach(activity);
-        /*
-        try
-        {
-            onSearchReturn = (OnSearchReturnListener) getActivity();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        */
+
     }
 
     @Override
@@ -114,7 +106,7 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
     @Override
     public void onClick(View view)
     {
-        /*
+
         switch (view.getId())
         {
             case R.id.search_nearby_search_btn:
@@ -127,9 +119,9 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
                 cancel();
                 break;
         }
-    */
+
     }
-    /*
+
     private <T> void search()
     {
         mResultValues = mAdapter.getValues();
@@ -146,17 +138,17 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
 
          mBaseActivity.showLoading(getActivity().getString(R.string.search_nearby_progress_dialog));
 
-        Response.Listener<GetMyPartyResponse> searchPartyListener = new Response.Listener<GetMyPartyResponse>()
+        Response.Listener<SearchResponse> searchPartyListener = new Response.Listener<SearchResponse>()
         {
 
             @Override
-            public void onResponse(GetMyPartyResponse getMyPartyResponse)
+            public void onResponse(SearchResponse searchResponse)
             {
                 Log.d(TAG, "On search nearby response");
-                mPartyList = getMyPartyResponse.getMyParties();
+                mPartyList = searchResponse.getMyParties();
                 if (!mPartyList.isEmpty())
                 {
-                    onSearchReturn.onSearchReturn(mPartyList);
+                    ((ContentHolderActivity) getActivity()).onSearchReturn(mPartyList);
                 }
                 else
                 {
@@ -171,12 +163,12 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
         };
 
         // TODO: Change api url, double check request
-        BaseRestRequest<GetMyPartyResponse> searchPartyRest = new BaseRestRequest<GetMyPartyResponse>(Method.POST,
+        BaseRestRequest<SearchResponse> searchPartyRest = new BaseRestRequest<SearchResponse>(Method.POST,
                 URL.SEARCH_PARTY, null, JSONUtils.toBytes(nearbySearchRequest), searchPartyListener,
                 ((BaseActivity) getActivity()).serviceErrorListener())
         {
             @Override
-            protected Response<GetMyPartyResponse> parseNetworkResponse(NetworkResponse response)
+            protected Response<SearchResponse> parseNetworkResponse(NetworkResponse response)
             {
                 Log.i(TAG, "Get the search party http request response and start to parse the response");
                 final int statusCode = response.statusCode;
@@ -196,7 +188,7 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
                     }
 
                     Log.i(TAG, "search party  Http response body----> " + json);
-                    return Response.success((GetMyPartyResponse) JSONUtils.toObject(json, GetMyPartyResponse.class),
+                    return Response.success((SearchResponse) JSONUtils.toObject(json, SearchResponse.class),
                             HttpHeaderParser.parseCacheHeaders(response));
                 }
                 else
@@ -235,9 +227,6 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
             searchRequest = new NearbySearchRequest();
 
             searchRequest.setDistanceOption((mResultValues.get(mOptions[0])).intValue());
-            searchRequest.setNumOfPeopleOption((mResultValues.get(mOptions[1])).intValue());
-            searchRequest.setPriceOption((mResultValues.get(mOptions[2])).intValue());
-            searchRequest.setTimeOption((mResultValues.get(mOptions[3])).intValue());
 
             if (mLocation == null)
             {
@@ -275,7 +264,12 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
 
     private void cancel()
     {
-
+        dismiss();
     }
-*/
+
+    public interface OnSearchReturnListener
+    {
+        public void onSearchReturn(ArrayList<SearchPartyResponse> partyList);
+    }
+
 }
