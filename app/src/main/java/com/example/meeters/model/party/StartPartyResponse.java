@@ -6,6 +6,7 @@ package com.example.meeters.model.party;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.Date;
 import com.example.meeters.model.common.Address;
 
@@ -20,8 +21,11 @@ public class StartPartyResponse extends StartPartyRequest implements Serializabl
     private Double latitude;
     private String topic;
     private Address address;
-    private Date date;
-    private String description;
+    private String type;
+    private String startTime;
+    private String endTime;
+
+    private String otherInfo;
 
     public BigInteger getPartyId()
     {
@@ -83,20 +87,37 @@ public class StartPartyResponse extends StartPartyRequest implements Serializabl
         this.address = address;
     }
 
-    public Date getDate(){
-        return date;
+    public String getStartTime(){
+        return startTime;
     }
 
-    public void setDate(Date date){
-        this.date=date;
+    public void setStartTime(String startTime){
+        this.startTime=startTime;
     }
 
-    public String getDescription(){
-        return description;
+    public String getEndTime(){
+        return endTime;
     }
 
-    public void setDescription(String description){
+    public void setEndTime(String endTime){
+        this.endTime=endTime;
+    }
 
+    public String getOtherInfo(){
+        return otherInfo;
+    }
+
+    public void setOtherInfo(String otherInfo){
+        this.otherInfo=otherInfo;
+
+    }
+
+    public String getType(){
+        return type;
+    }
+
+    public void setType(String type){
+        this.type=type;
     }
 
 }
