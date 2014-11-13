@@ -57,6 +57,7 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
     protected ArrayList<SearchPartyResponse> mPartyList;
     private BaseActivity mBaseActivity;
     private Context mContext;
+    private OnSearchReturnListener listener;
 
     
     public SearchNearbyFragment(BaseApplication application, BaseActivity activity, Context context)
@@ -73,6 +74,7 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
     {
 
         super.onAttach(activity);
+        listener = (OnSearchReturnListener) activity;
 
     }
 
@@ -148,7 +150,9 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
                 mPartyList = searchResponse.getMyParties();
                 if (!mPartyList.isEmpty())
                 {
-                    ((ContentHolderActivity) getActivity()).onSearchReturn(mPartyList);
+                    ContentHolderActivity a = (ContentHolderActivity) getActivity();
+                    listener.onSearchReturn(mPartyList);
+                    //((ContentHolderActivity) getActivity()).onSearchReturn(mPartyList);
                 }
                 else
                 {
@@ -255,7 +259,7 @@ public class SearchNearbyFragment extends DialogFragment implements OnClickListe
             {
                 Toast.makeText(getActivity().getApplicationContext(), errorMessage.toString(), Toast.LENGTH_SHORT)
                         .show();
-                return null;
+                //return null;
             }
 
         }

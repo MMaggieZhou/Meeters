@@ -51,7 +51,7 @@ public class BaseRestRequest<T> extends Request<T>
         mHeader.put("Accept", "application/json");
 
         // TODO add the user auth token here for permission validation
-        //mHeader.put("authToken", BaseApplication.getAuthToken());
+       mHeader.put("authToken", BaseApplication.getAuthToken());
 
         // set default retry policy
         setRetryPolicy(new DefaultRetryPolicy(10000,// DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,

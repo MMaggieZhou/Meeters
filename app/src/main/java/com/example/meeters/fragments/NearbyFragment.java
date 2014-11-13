@@ -90,22 +90,23 @@ public class NearbyFragment extends BaseFragment {
                 .getMap();
         for (SearchPartyResponse party: partyList) {
             LatLng location = new LatLng(party.getLatitude(),party.getLongitude());
-            Marker marker = map.addMarker(new MarkerOptions().position(location)
-                    .title(party.getTheme())
-                    .snippet(party.getTheme())
-                    .icon(BitmapDescriptorFactory.defaultMarker()));
-
             if (party.getJoin()) {
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                Marker marker = map.addMarker(new MarkerOptions().position(location)
+                        .title("title")
+                        .snippet("theme")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
             } else {
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                Marker marker = map.addMarker(new MarkerOptions().position(location)
+                        .title("title")
+                        .snippet("theme")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
             }
-            id.put(marker, party.getPartyId());
+            //id.put(marker, party.getPartyId());
         }
         // Move the camera instantly to hamburg with a zoom of 15.
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(((BaseActivity) getActivity()).getLocation().getLatitude(), ((BaseActivity) getActivity()).getLocation().getLongitude()), 2));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.001608,-83.019857), 5));
         // Zoom in, animating the camera.
-        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+       // map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
     public class PartyListAdapter extends BaseAdapter {
         private ArrayList<SearchPartyResponse> mMyParties;

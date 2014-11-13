@@ -88,7 +88,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD0hGNqCyy_FX5eAjDesyVMLzLf9jaCbzc" />
+            android:value="AIzaSyAj6YvDDQNflN8YFKIUnr3Hw0FKjKYujNk" />
         <activity
             android:name="com.example.meeters.activities.ContentHolderActivity"
             android:label="@string/title_activity_content_holder" >

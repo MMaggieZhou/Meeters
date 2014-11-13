@@ -37,7 +37,7 @@ import com.example.meeters.base.*;
 import com.example.meeters.model.party.SearchPartyResponse;
 import com.example.meeters.model.party.StartPartyResponse;
 
-public class ContentHolderActivity extends BaseActivity implements ActionBar.TabListener
+public class ContentHolderActivity extends BaseActivity implements ActionBar.TabListener, SearchNearbyFragment.OnSearchReturnListener
 {
     private static final String TAG = ContentHolderActivity.class.getSimpleName();
     private static final int START_PARTY_REQUEST = 4;
@@ -291,8 +291,10 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
     private void searchNearby()
     {
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+        //manager.beginTransaction();
          SearchNearbyFragment mydialog = new SearchNearbyFragment(mBaseApplication, this, this);
         mydialog.show(manager, "");
+        //manager.co
     }
 
     private void startNewParty()
@@ -327,14 +329,11 @@ public class ContentHolderActivity extends BaseActivity implements ActionBar.Tab
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
     public void onSearchReturn(ArrayList<SearchPartyResponse> partyList)
     {
         ((NearbyFragment) mFragments[1]).setPartyList(partyList);
         //((NearByFragment) mFragments[1]).mAdapter.notifyDataSetChanged();
         mViewPager.setCurrentItem(1);
-    }
-    public interface OnSearchReturnListener
-    {
-        public void onSearchReturn(ArrayList<SearchPartyResponse> partyList);
     }
 }
