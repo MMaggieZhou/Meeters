@@ -90,18 +90,11 @@ public class NearbyFragment extends BaseFragment {
                 .getMap();
         for (SearchPartyResponse party: partyList) {
             LatLng location = new LatLng(party.getLatitude(),party.getLongitude());
-            if (party.getJoin()) {
-                Marker marker = map.addMarker(new MarkerOptions().position(location)
-                        .title("title")
-                        .snippet("theme")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
-            } else {
-                Marker marker = map.addMarker(new MarkerOptions().position(location)
-                        .title("title")
-                        .snippet("theme")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-            }
-            //id.put(marker, party.getPartyId());
+            Marker marker = map.addMarker(new MarkerOptions().position(location)
+                    .title("title")
+                    .snippet("theme")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
+            id.put(marker, party.getPartyId());
         }
         // Move the camera instantly to hamburg with a zoom of 15.
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.001608,-83.019857), 5));

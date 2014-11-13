@@ -198,7 +198,8 @@ public class NicknameFragment  extends BaseFragment implements OnClickListener{
 
         };
         //Log.i(TAG, "Add regist http request in the async queue!");
-        executeRequest(profileUpdateRest);
+        ((BaseActivity) getActivity()).executeRequest(profileUpdateRest);
+        //executeRequest(profileUpdateRest);
 
     }
 }
