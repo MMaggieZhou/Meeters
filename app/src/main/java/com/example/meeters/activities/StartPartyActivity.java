@@ -450,7 +450,7 @@ public class StartPartyActivity extends BaseActivity
 
         String addressString = address.replaceAll(" ", "+");
         String uri = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressString
-                + "&key=AIzaSyAj6YvDDQNflN8YFKIUnr3Hw0FKjKYujNk";
+                + "&key=AIzaSyD4_opwzBy9nEnQinZSmHxtJnkVXTWWiso";
 
         Log.i(TAG, uri);
         Response.Listener<JSONObject> loationListener = new Response.Listener<JSONObject>()

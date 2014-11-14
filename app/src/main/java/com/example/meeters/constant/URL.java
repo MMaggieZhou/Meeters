@@ -6,6 +6,7 @@ public enum URL
 {
 
     BASE_URL("http://10.0.3.2:9000"),
+    //BASE_URL("http://164.107.127.218:9000"),
 
     LOGIN("/user/login"),
     REGISTER("/user/register"),
@@ -15,6 +16,7 @@ public enum URL
     JOIN_PARTY("/party/join"),
     FIND_PASSWORD("/user/findPassword"),
     SEARCH_PARTY("/party/nearby");
+
 
     private String value;
 

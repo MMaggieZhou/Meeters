@@ -146,12 +146,12 @@ public class MyPartyFragment extends BaseFragment
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                     {
-                        //android.support.v4.app.FragmentManager manager = mActivity.getSupportFragmentManager();
-                        //PartyDetailsFragment mydialog = new PartyDetailsFragment();
-                        //mydialog.setData(mPartyList.get(position), LEAVE, mActivity, mApplication);
-                        //mydialog.setTargetFragment(mFragment, PARTY_DETAIL_REQUEST);
+                        /*android.app.FragmentManager manager = mActivity.getFragmentManager();
+                        PartyDetailsFragment mydialog = new PartyDetailsFragment();
+                        mydialog.setData(mPartyList.get(position), LEAVE, mActivity, mApplication);
+                        mydialog.setTargetFragment(mFragment, PARTY_DETAIL_REQUEST);
 
-                        //mydialog.show(manager, "Activity Details");
+                        mydialog.show(manager, "Activity Details");*/
 
                     }
                 });

@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -39,6 +40,7 @@ public class NearbyFragment extends BaseFragment {
     private BaseActivity mBaseActivity;
     private android.support.v4.app.Fragment mFragment;
     private HashMap<Marker, BigInteger> id = new HashMap<Marker, BigInteger>();
+    private HashMap<Marker, SearchPartyResponse> sRes=new HashMap<Marker, SearchPartyResponse>();
 
 
     private GoogleMap map;
@@ -64,11 +66,22 @@ public class NearbyFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_nearby, container, false);
         map = ((SupportMapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        /*map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 BigInteger partyId = id.get(marker);
                 return false;
+            }
+        });*/
+        map.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+
+            public void onInfoWindowClick(Marker marker) {
+                android.app.FragmentManager manager = mBaseActivity.getFragmentManager();
+                JoinPartyFragment mydialog = new JoinPartyFragment();
+                mydialog.setData(sRes.get(marker), mBaseActivity, (BaseApplication) mBaseActivity.getApplication());
+
+                mydialog.show(manager, "Activity Details");
+
             }
         });
         return v;
@@ -92,9 +105,10 @@ public class NearbyFragment extends BaseFragment {
             LatLng location = new LatLng(party.getLatitude(),party.getLongitude());
             Marker marker = map.addMarker(new MarkerOptions().position(location)
                     .title("title")
-                    .snippet("theme")
+                    .snippet(party.getTheme())
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
             id.put(marker, party.getPartyId());
+            sRes.put(marker, party);
         }
         // Move the camera instantly to hamburg with a zoom of 15.
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.001608,-83.019857), 5));

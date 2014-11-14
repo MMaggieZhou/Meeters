@@ -21,17 +21,15 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
 
-public abstract class BaseFragment extends DialogFragment
+public abstract class BaseFragment extends Fragment
 {
     @SuppressWarnings("unused")
     private static final String TAG = BaseFragment.class.getSimpleName();
 
     protected BaseApplication mApplication;
-    protected static BaseApplication mBaseApplication;
     protected BaseActivity mActivity;
     protected Context mContext;
     protected View mView;
-    private ProgressDialog mDialog;
 
     public BaseFragment(BaseApplication application, BaseActivity activity, Context context)
     {
@@ -39,16 +37,7 @@ public abstract class BaseFragment extends DialogFragment
         mActivity = activity;
         mContext = context;
     }
-    /*public static BaseFragment newInstance(BigInteger id, String nickname)
-    {
-        BaseFragment f=new BaseFragment();
-        Bundle args = new Bundle();
-        args.putInt("UserId", id.intValue());
-        args.putString("Nickname", nickname);
-        f.setArguments(args);
-        return f;
 
-    }*/
     /**
      * ErrorListener listen the error message from the http service request
      * 
@@ -68,32 +57,4 @@ public abstract class BaseFragment extends DialogFragment
         };
     }
 
-    /**
-     * show Loading Dialog
-     */
-    public void showLoading(String message)
-    {
-        if (mDialog == null)
-        {
-            mDialog = new ProgressDialog(this.mContext);
-            if (StringUtils.isBlank(message))
-            {
-                message = "Running...";
-            }
-            mDialog.setTitle(message);
-            mDialog.show();
-        }
-        else
-        {
-            mDialog.show();
-        }
-    }
-
-    /**
-     * @param request
-     */
-    public void executeRequest(Request<?> request)
-    {
-        mBaseApplication.getRequestManager().addRequest(request, TAG);
-    }
 }

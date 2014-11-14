@@ -16,6 +16,10 @@ public class SearchPartyResponse implements Serializable {
     private Double latitude;
     private BigInteger partyId;
     private BigDecimal distance;
+    private String startTime;
+    private String endTime;
+    private String location;
+    private String description;
 
     public boolean getJoin() {
         return join;
@@ -72,6 +76,46 @@ public class SearchPartyResponse implements Serializable {
     public void setLatitude(Double latitude)
     {
         this.latitude = latitude;
+    }
+
+    public String getStartTime()
+    {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime)
+    {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime()
+    {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime)
+    {
+        this.endTime = endTime;
+    }
+
+    public String getLocation()
+    {
+        return location;
+    }
+
+    public void setLocation(String location)
+    {
+        this.location = location;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
     }
 
 }

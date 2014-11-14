@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.example.meeters.base.BaseActivity;
 import com.example.meeters.base.BaseApplication;
+import com.example.meeters.fragments.JoinPartyFragment;
 import com.example.meeters.meeters.R;
+import com.google.android.gms.maps.model.Marker;
 
 public class ProfileActivity extends BaseActivity implements OnItemClickListener{
     private TextView etUsername;
@@ -76,11 +78,11 @@ public class ProfileActivity extends BaseActivity implements OnItemClickListener
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         switch(v.getId()){
             case R.id.username:
-                NicknameFragment nickname = new NicknameFragment((BaseApplication) getApplication(), this, this);
-                nickname.show(manager, "");
-                mBaseApplication = (BaseApplication) getApplication();
-                mCurrentUser = mBaseApplication.getUser();
-                etUsername.setText(mCurrentUser.getNickname());
+                NicknameFragment mydialog = new NicknameFragment();
+                mydialog.setData(this, mBaseApplication);
+                mydialog.show(manager, "Profile Update");
+                etUsername.setText(((BaseApplication)mBaseApplication).getUser().getNickname());
+
                 break;
         }
 
