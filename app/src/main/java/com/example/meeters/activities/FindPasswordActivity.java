@@ -31,6 +31,7 @@ public class FindPasswordActivity extends BaseActivity {
     private Button sendButton;
     private Button returnButton;
     private EditText emailText;
+    private String passWord;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
