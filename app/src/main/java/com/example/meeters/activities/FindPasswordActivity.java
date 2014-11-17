@@ -137,7 +137,7 @@ public class FindPasswordActivity extends BaseActivity {
         Session session = createSessionObject();
         String subject="Find Password for Meeters.";
         String messageBody="Your username is: "+nickName+", Your password is:"+passWord+". " +
-                "Please change your password after login as soon as possible";
+                "Thank you. ";
         try {
             Message message = createMessage(email, subject, messageBody, session);
             new SendMailTask().execute(message);
@@ -172,7 +172,7 @@ public class FindPasswordActivity extends BaseActivity {
 
         final FindPasswordRequest passwordRequest = new FindPasswordRequest();
 
-        showLoading("Loading...");
+        showLoading("Sending...");
 
        // loginRequest.setLoginAccount(etAccount.getText().toString().trim());
         passwordRequest.setEmail(email);
