@@ -136,32 +136,7 @@ public class FindPasswordActivity extends BaseActivity {
         return message;
     }
 
-   /* public boolean sendEmail(String email)
-    {
-        Mail m = new Mail("yingirisyeon@gmail.com", "topcoder");
-        m.set_debuggable(true);
-        String[] toArr = {"1345075374@qq.com"};
-        m.set_to(toArr);
-        m.set_from("customerService@meeters.com");
-        m.set_subject("Find Password");
-        m.setBody("Your password is ,please reset your password as soon as possible");
-        try {
-            //m.addAttachment("/sdcard/filelocation");
-            if(m.send()) {
-                Log.i("IcetestActivity", "Email was sent successfully.");
 
-            } else {
-                Log.i("IcetestActivity","Email was sent failed.");
-            }
-        } catch (Exception e) {
-            // Toast.makeText(MailApp.this,
-            // "There was a problem sending the email.",
-            // Toast.LENGTH_LONG).show();
-            Log.e("MailApp", "Could not send email", e);
-        }
-
-        return true;
-    }*/
 
     private boolean sendMail(String email) {
         Session session = createSessionObject();
