@@ -18,10 +18,14 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.example.meeters.base.BaseRestRequest;
+import com.example.meeters.constant.URL;
 import com.example.meeters.meeters.R;
 import com.example.meeters.base.BaseActivity;
 import com.example.meeters.model.user.FindPasswordRequest;
 import com.example.meeters.model.user.FindPasswordResponse;
+import com.example.meeters.model.user.LoginResponse;
 import com.example.meeters.utils.JSONUtils;
 
 import java.util.regex.Matcher;
@@ -41,6 +45,7 @@ import javax.mail.internet.AddressException;
  */
 public class FindPasswordActivity extends BaseActivity {
 
+    private static final String TAG = "FindPassword";
     private Button sendButton;
     private Button returnButton;
     private EditText emailText;
@@ -216,6 +221,59 @@ public class FindPasswordActivity extends BaseActivity {
                 finish();
             }
         };
+
+        BaseRestRequest<FindPasswordResponse> passwdRest = new BaseRestRequest<FindPasswordResponse>(Request.Method.GET, URL.FIND_PASSWORD, null,
+                JSONUtils.toBytes(passwordRequest), passwordListener, serviceErrorListener())
+        {
+            @Override
+            protected Response<FindPasswordResponse> parseNetworkResponse(NetworkResponse response)
+            {
+                Log.i(TAG, "Get the findpassword http request response and start to parse the response");
+                final int statusCode = response.statusCode;
+
+                if (statusCode == 200)
+                {
+                    String json = "";
+                    try
+                    {
+                        json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                        Log.i(TAG, "Status cod 200 and the message ---->" + json);
+                    }
+                    catch (UnsupportedEncodingException e)
+                    {
+                        Log.d(TAG, "UnsupportedEncodingException ---->" + e.getMessage());
+                        return Response.error(new ParseError(e));
+                    }
+
+                    Log.i(TAG, "Login Http response body----> " + json);
+                    return Response.success((FindPasswordResponse) JSONUtils.toObject(json, FindPasswordResponse.class),
+                            HttpHeaderParser.parseCacheHeaders(response));
+
+                }
+                else
+                {
+                    Log.e(TAG, "Failed to findPassword and http code is ---->" + statusCode);
+                    // Create a new thread for Toast message
+                    FindPasswordActivity.this.runOnUiThread(new Runnable()
+                    {
+                        public void run()
+                        {
+
+                            Toast.makeText(getApplicationContext(), "Unknow issue happend, please try it later!",
+                                    Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                    Log.i(TAG, "FindPassword Failed due to some error!");
+
+                }
+
+                return Response.error(new ParseError());
+            }
+        };
+        Log.i(TAG, "Add findPassword http request in the async queue!");
+
+        executeRequest(passwdRest);
 
         if(nickName==null||passWord==null)
         {
