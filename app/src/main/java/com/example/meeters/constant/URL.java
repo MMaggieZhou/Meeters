@@ -10,6 +10,7 @@ public enum URL
 
     LOGIN("/user/login"),
     REGISTER("/user/register"),
+    FIND_PW("/usr/findPasswd"),
     PROFILE_UPDATE("/user/profileUpdate"),
     START_PARTY("/party/create"),
     GET_PARTY("/party/myParty"),
