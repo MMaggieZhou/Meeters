@@ -223,6 +223,7 @@ public class FindPasswordActivity extends BaseActivity {
 
                 passWord=findpwResponse.getPassword();
                 nickName=findpwResponse.getNickName();
+
               //  mCurrentUser.setGender(loginResponse.getGender());
               //  mCurrentUser.setPhone(loginResponse.getPhone());
               //  mCurrentUser.setNickname(loginResponse.getNickname());
@@ -246,8 +247,12 @@ public class FindPasswordActivity extends BaseActivity {
             }
         };
 
-
-        return true;
+        if(nickName==null||passWord==null)
+        {
+            return false;
+        }
+        else
+            return true;
     }
 
     private class SendMailTask extends AsyncTask<Message, Void, Void> {
