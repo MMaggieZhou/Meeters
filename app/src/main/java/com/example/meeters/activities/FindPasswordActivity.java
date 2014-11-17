@@ -25,8 +25,6 @@ import com.example.meeters.meeters.R;
 import com.example.meeters.base.BaseActivity;
 import com.example.meeters.model.user.FindPasswordRequest;
 import com.example.meeters.model.user.FindPasswordResponse;
-import com.example.meeters.model.user.LoginRequest;
-import com.example.meeters.model.user.LoginResponse;
 import com.example.meeters.utils.JSONUtils;
 
 import java.util.regex.Matcher;
