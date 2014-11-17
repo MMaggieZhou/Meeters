@@ -1,15 +1,33 @@
 package com.example.meeters.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.AsyncTask;
 import android.app.*;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.example.meeters.base.BaseRestRequest;
+import com.example.meeters.constant.URL;
 import com.example.meeters.meeters.R;
 import com.example.meeters.base.BaseActivity;
+import com.example.meeters.model.user.FindPasswordRequest;
+import com.example.meeters.model.user.FindPasswordResponse;
+import com.example.meeters.model.user.LoginRequest;
+import com.example.meeters.model.user.LoginResponse;
+import com.example.meeters.utils.JSONUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +50,7 @@ public class FindPasswordActivity extends BaseActivity {
     private Button returnButton;
     private EditText emailText;
     private String passWord;
+    private String nickName;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -147,7 +166,8 @@ public class FindPasswordActivity extends BaseActivity {
     private boolean sendMail(String email) {
         Session session = createSessionObject();
         String subject="Find Password for Meeters.";
-        String messageBody="Your password is:  please change your password as soon as possible";
+        String messageBody="Your username is: "+nickName+", Your password is:"+passWord+". " +
+                "Please change your password after login as soon as possible";
         try {
             Message message = createMessage(email, subject, messageBody, session);
             new SendMailTask().execute(message);
@@ -179,6 +199,54 @@ public class FindPasswordActivity extends BaseActivity {
     //check database
     public boolean emailExist(String email)
     {
+
+        final FindPasswordRequest passwordRequest = new FindPasswordRequest();
+
+        showLoading("Loading...");
+
+       // loginRequest.setLoginAccount(etAccount.getText().toString().trim());
+        passwordRequest.setEmail(email);
+
+      //  passwordRequest.setPassword(etPwd.getText().toString().trim());
+
+
+        Response.Listener<FindPasswordResponse> passwordListener = new Response.Listener<FindPasswordResponse>()
+        {
+
+            @Override
+            public void onResponse(FindPasswordResponse findpwResponse)
+            {
+                Toast.makeText(getApplicationContext(), "findPassword successful!",
+                        Toast.LENGTH_LONG).show();
+                mCurrentUser.setNickname(findpwResponse.getNickName());
+                mCurrentUser.setPassword(findpwResponse.getPassword());
+
+                passWord=findpwResponse.getPassword();
+                nickName=findpwResponse.getNickName();
+              //  mCurrentUser.setGender(loginResponse.getGender());
+              //  mCurrentUser.setPhone(loginResponse.getPhone());
+              //  mCurrentUser.setNickname(loginResponse.getNickname());
+              //  mCurrentUser.setUserId(loginResponse.getUserId());
+              //  mCurrentUser.setLastname(loginResponse.getLastname());
+              //  mCurrentUser.setFirstname(loginResponse.getNickname());
+               // mCurrentUser.setAuthToken(loginResponse.getAuthToken());
+              //  mBaseApplication.setAuthToken(loginResponse.getAuthToken());
+                //Log.i(TAG, "After login http request, override user info to application! And Navigate to main pages!");
+                dismissLoading();
+              //  Toast.makeText(getApplicationContext(), "welcome " + mCurrentUser.getNickname(),
+                //        Toast.LENGTH_LONG).show();
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("currentUser", JSONUtils.toJson(mCurrentUser));
+                editor.commit();
+
+              //  Intent intent = new Intent(LoginActivity.this, ContentHolderActivity.class);
+             //   startActivity(intent);
+                finish();
+            }
+        };
+
+
         return true;
     }
 
